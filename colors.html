@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maine Coon Color Guide</title>
+<meta name="description" content="Maine Coon coat colors and patterns with photos, descriptions, and common variations.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>🐱 Maine Coon Color Guide</h1>
+  <p class="lead">Explore the coat colors and patterns found in Maine Coons. Click any thumbnail for a full-frame view, description, and common variations.</p>
+</header>
+
+<nav class="nav">
+  <a href="/">Home</a>
+  <a href="/colors.html" class="current">Color Guide</a>
+  <a href="/breeds.html">Breeds &amp; Lines</a>
+  <a href="/health.html">Health &amp; Screening</a>
+  <a href="/worksheet.html">Breeder Worksheet</a>
+</nav>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All Colors</button>
+  <button class="filter-btn" data-filter="both">Both Sexes</button>
+  <button class="filter-btn" data-filter="female">Effectively Female-Only</button>
+</div>
+
+<div class="note">
+  <b>About sex and color:</b> Maine Coons come in a very large number of color and pattern combinations. Nearly all of them occur in both males and females. Tortoiseshell, torbie, and calico patterns are the exception: because the genes for black-based and red-based pigment sit on the X chromosome, these patterns are overwhelmingly female. Males with them do occur but are rare and usually result from an unusual chromosome arrangement, and such males are typically sterile.
+</div>
+
+<h2 class="section-title">Solid Colors</h2>
+<div class="cards" id="grid-solid"></div>
+
+<h2 class="section-title">Tabby Patterns</h2>
+<div class="cards" id="grid-tabby"></div>
+
+<h2 class="section-title">Specialty Patterns</h2>
+<div class="cards" id="grid-specialty"></div>
+
+<div class="tip">
+  <b>Reading a coat accurately:</b> Part the fur to check the undercoat before deciding on a label. A white base with colored tips means smoke or silver rather than a true solid, and faint "ghost" striping in strong light is common in young red and cream cats that will still be registered as solids.
+</div>
+
+<footer>Photos are illustrative examples. Registry color naming varies slightly between organizations.</footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="inner">
+    <button class="close" aria-label="Close">×</button>
+    <img id="mImg" src="" alt="">
+    <div class="detail">
+      <h3 id="mTitle"></h3>
+      <p class="sub" id="mPattern"></p>
+      <p class="desc" id="mDesc"></p>
+      <div class="varbox">
+        <h4>Common Variations</h4>
+        <ul id="mVars"></ul>
+      </div>
+      <div class="genderline" id="mGender"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const IMG = {
+  black:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/c588fda1-5482-582a-bca8-c51708c8e9aa/0f3a91ec-fccb-5a03-baa0-276d80e87806.jpg",
+  blue:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/6fb7678c-4dff-5342-86ee-73618989aa05/d1d3938e-c060-561f-b224-1e83e6d54654.jpg",
+  red:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/decff3ce-fd2b-5f0c-82d0-24ffdc6d42cc/ce134c10-041e-5e27-9976-3a50a143f596.jpg",
+  cream:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/477fe053-c1a0-57d9-a443-a9f6f444677a/5bcc4b8d-ebac-548f-802b-b8c0badc7ff7.jpg",
+  cream2:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/a3bfb4c2-0449-55a8-b793-43e9b0b26cec/31bd79c8-2c2b-55aa-ba47-8ddf1c2aa390.jpg",
+  white:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/0e83c013-677f-5d23-9ec2-264c13df761a/aba6ed7d-e3e4-5bab-85c0-27637a3cc077.jpg",
+  brown:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/ec4e8e44-a55a-59f3-8fa9-a229094fa066/ee867a14-5e06-57db-ae47-5bcbab696d9e.jpg",
+  brown2:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/decff3ce-fd2b-5f0c-82d0-24ffdc6d42cc/ce134c10-041e-5e27-9976-3a50a143f596.jpg",
+  silver:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/246f347a-3f35-52a5-b7c9-6bf0c9c74837/ce134c10-041e-5e27-9976-3a50a143f596.jpg",
+  mix:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/4a808d6e-622b-5e30-9fa2-dd1c35204582/de44c757-0bcb-5116-b16f-041366940e0e.jpg",
+  patterns:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/3b160e81-1e4d-5ffe-9b54-fd48ea956583/0f3a91ec-fccb-5a03-baa0-276d80e87806.jpg",
+  tortie:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/d1771b6a-e6bf-5926-9972-914f687370ba/d1d3938e-c060-561f-b224-1e83e6d54654.jpg",
+  tortie2:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/7d80381c-0612-58f9-b9de-a74d3b36a2be/2fdf7415-58ca-5674-a205-fcefffcee2a0.jpg",
+  calico:"https://d2u1z1lopyfwlx.cloudfront.net/thumbnails/8997de1a-3ba5-529d-af0a-19abd25f19ae/2be9cd3a-c461-5682-9203-6b0986ee40ed.jpg"
+};
+
+const COLORS = [
+ {g:"solid",k:"black",t:"Black",p:"Solid / self color",x:"both",img:IMG.black,
+  d:"A coal-black coat that should be dense and even from root to tip with no rusting, shading, or visible markings. Nose leather and paw pads are black or dark brown, and eye color is typically copper, gold, or green. Black is one of the two foundation pigments of the entire breed palette, since every Maine Coon color derives from black-based or red-based pigment plus modifiers.",
+  v:["Solid black with no markings","Black with white (tuxedo and other bicolors)","Black smoke, with a white undercoat under black tips","Black silver tabby, with black markings on a silver ground","Sun-faded or 'rusty' black, a coat-condition effect rather than a separate color"]},
+
+ {g:"solid",k:"blue",t:"Blue",p:"Solid / dilute of black",x:"both",img:IMG.blue,
+  d:"Blue is the dilute form of black, produced by a recessive gene that spaces pigment granules along the hair shaft and reads to the eye as a soft slate gray. The coat should be one even tone from root to tip. Nose leather and paw pads are blue-gray, and eyes are usually copper, gold, or green. Two blue-carrying parents are required to produce blue kittens.",
+  v:["Solid blue with no markings","Blue and white bicolor","Blue smoke, with a white undercoat","Blue silver tabby","Blue classic or mackerel tabby"]},
+
+ {g:"solid",k:"red",t:"Red",p:"Solid / orange",x:"both",img:IMG.red,
+  d:"Red is a deep warm orange, often called ginger outside of pedigree circles. True solid red is uncommon in practice because the red gene does not fully suppress tabby markings, so most red Maine Coons show at least faint striping on the legs, tail, or face. Nose leather and paw pads are brick red. Because red is carried on the X chromosome, red males need only one copy while red females need two, so red is more frequently seen in males.",
+  v:["Solid red, usually with residual ghost striping","Red tabby, by far the most common red presentation","Red silver tabby, sometimes called cameo","Red smoke","Red and white bicolor"]},
+
+ {g:"solid",k:"cream",t:"Cream",p:"Solid / dilute of red",x:"both",img:IMG.cream,
+  d:"Cream is the dilute of red, giving a soft buff or pale apricot tone that should be even across the body. As with red, faint tabby ghost markings are common and do not disqualify the cat from being registered as a solid. Nose leather and paw pads are pink. Cream requires both the dilute gene and the red gene, which makes it less common than red.",
+  v:["Solid cream, often with faint ghost markings","Cream tabby","Cream silver tabby","Cream smoke","Cream and white bicolor"]},
+
+ {g:"solid",k:"white",t:"White",p:"Solid / masking gene",x:"both",img:IMG.white,
+  d:"White in cats is not a pigment but a masking effect. A dominant white gene switches off pigment production across the coat, so a white Maine Coon genetically carries some other color underneath that simply never expresses. Nose leather and paw pads are pink. Eye color varies more here than in any other color and may be gold, copper, green, blue, or odd-eyed. White cats with blue eyes have a higher likelihood of congenital deafness, which is worth discussing with a breeder or veterinarian.",
+  v:["Solid white with gold or copper eyes","Solid white with green eyes","Solid white with blue eyes","Odd-eyed white, one blue and one gold or green","Kittens occasionally born with a small colored 'kitten cap' that fades with age"]},
+
+ {g:"tabby",k:"brown-tabby",t:"Brown Tabby",p:"Classic, mackerel, or ticked",x:"both",img:IMG.brown,
+  d:"The brown tabby is the pattern most people picture when they think of a Maine Coon. Dense black or dark brown markings sit on a warm brown to coppery ground color. Every tabby, regardless of color, shows the same signature features: an M-shaped marking on the forehead, pencil lines on the face, rings on the legs and tail, and spotting on the belly. The pattern type describes how the body markings are arranged.",
+  v:["Classic tabby, with wide swirls and a bullseye on the flank","Mackerel tabby, with narrow vertical stripes like fish bones","Ticked tabby, with banded hairs and minimal body markings","Brown tabby with white","Brown patched tabby, which is a torbie"]},
+
+ {g:"tabby",k:"silver-tabby",t:"Silver Tabby",p:"Black markings on a silver ground",x:"both",img:IMG.silver,
+  d:"A silver tabby is genetically a brown tabby carrying the inhibitor gene, which suppresses warm yellow pigment in the undercoat and leaves it near-white. The result is dense black markings on a bright, cold silver background instead of a warm brown one. Silver tabbies typically have black-rimmed eyes, a brick nose outlined in black, and striking contrast. Warm brassy tones in the ground color are considered a fault in show cats.",
+  v:["Silver classic tabby","Silver mackerel tabby","Silver ticked tabby","Blue silver tabby, the dilute version","Red silver tabby, often called cameo tabby"]},
+
+ {g:"tabby",k:"blue-tabby",t:"Blue Tabby",p:"Dilute tabby",x:"both",img:IMG.patterns,
+  d:"The blue tabby carries the dilute gene over a brown tabby base, so the markings appear slate blue-gray against a paler fawn or ivory ground. The overall impression is softer and cooler than a brown tabby, with lower contrast between markings and background. All standard tabby features are present, just rendered in gray. Nose leather is old rose and paw pads are blue-gray.",
+  v:["Blue classic tabby","Blue mackerel tabby","Blue ticked tabby","Blue silver tabby","Blue tabby with white"]},
+
+ {g:"tabby",k:"red-tabby",t:"Red Tabby",p:"Orange markings on a lighter ground",x:"both",img:IMG.brown2,
+  d:"Red tabbies show deep orange markings over a paler orange or cream ground. Because the red gene does not permit a true non-agouti solid, essentially every red Maine Coon reads as some form of tabby, which is why red tabby is far more common than solid red. Nose leather and paw pads are brick red, and eye color is usually gold or copper.",
+  v:["Red classic tabby","Red mackerel tabby","Red ticked tabby","Red silver tabby, or cameo tabby","Red tabby with white"]},
+
+ {g:"tabby",k:"cream-tabby",t:"Cream Tabby",p:"Dilute red tabby",x:"both",img:IMG.cream2,
+  d:"The cream tabby is the dilute counterpart of the red tabby, with buff markings on a pale cream ground. Contrast is naturally low, so the pattern can be subtle and is sometimes easiest to see in raking light or on the legs and tail. Nose leather and paw pads are pink. Cream tabbies often deepen slightly in tone as they mature.",
+  v:["Cream classic tabby","Cream mackerel tabby","Cream ticked tabby","Cream silver tabby","Cream tabby with white"]},
+
+ {g:"specialty",k:"smoke",t:"Smoke",p:"Solid tips over a white undercoat",x:"both",img:IMG.mix,
+  d:"A smoke looks like a solid-colored cat at rest, then reveals a bright white undercoat when it moves, turns, or has its fur parted. This comes from the inhibitor gene acting on a non-agouti cat, so pigment is confined to the outer portion of each hair with white at the base. The effect is dramatic in a full Maine Coon coat, particularly around the ruff and britches. Smoke kittens can be difficult to identify early and often become more obvious as the coat develops.",
+  v:["Black smoke, the most frequently seen","Blue smoke","Red smoke","Cream smoke","Tortoiseshell smoke"]},
+
+ {g:"specialty",k:"bicolor",t:"Bicolor &amp; White",p:"Any color combined with white",x:"both",img:IMG.patterns,
+  d:"Bicolor describes any base color or pattern paired with white spotting, which is controlled separately from the color itself. The amount of white ranges from a few toes and a locket to a nearly all-white cat with color confined to the head and tail. Registries subdivide these by how much white is present, and the named patterns below are the most commonly used descriptions.",
+  v:["Tuxedo, with white chest, paws, and belly","Van, with color restricted to head and tail","Harlequin, with scattered color patches on white","Cap and saddle, with color on the head and back","Locket or mitted, with minimal white on chest or feet"]},
+
+ {g:"specialty",k:"tortoiseshell",t:"Tortoiseshell",p:"Black-based and red-based patches",x:"female",img:IMG.tortie,
+  d:"A tortoiseshell mixes black-based and red-based pigment across the coat in patches, with no white. Each tortie is visually unique because the pattern arises from random X-chromosome inactivation early in development, meaning the distribution cannot be predicted or reproduced. Torties are effectively female-only: a male needs an extra X chromosome to display the pattern, which is rare and generally accompanied by sterility.",
+  v:["Black tortie, with black and red patching","Blue-cream, the dilute tortie","Tortie smoke, with a white undercoat","Tortie with white, commonly called calico","Patched tabby, or torbie, when tabby markings show through"]},
+
+ {g:"specialty",k:"torbie",t:"Torbie",p:"Patched tabby",x:"female",img:IMG.tortie2,
+  d:"A torbie, formally a patched tabby, is a tortoiseshell whose colored areas also carry visible tabby striping. The cat shows tortie patching and tabby structure at the same time, so you see the forehead M, ringed legs, and ringed tail within red and black regions. Torbies are sometimes mistaken for plain brown tabbies until the red patches are noticed, particularly on the face and legs. Like torties, they are effectively female-only.",
+  v:["Brown torbie","Blue torbie, the dilute version","Silver torbie","Torbie with white","Classic or mackerel structure within the patches"]},
+
+ {g:"specialty",k:"calico",t:"Calico",p:"Tortoiseshell with white",x:"female",img:IMG.calico,
+  d:"A calico is a tortoiseshell carrying white spotting, producing three distinct colors: black-based, red-based, and white. The white spotting gene pushes the colored areas into larger, cleaner, more separated patches than the intermingled look of a tortie without white, which is why calicos often appear bolder and more graphic. As with torties and torbies, calicos are effectively female-only.",
+  v:["Standard calico in black, red, and white","Dilute calico in blue, cream, and white","Caliby, a calico with tabby markings in the patches","High-white calico, mostly white with limited patches","Calico smoke"]}
+];
+
+const GENDER_TEXT = {
+  both:{label:"Both Sexes",cls:"both",full:"✓ Occurs in both male and female Maine Coons"},
+  female:{label:"Effectively Female-Only",cls:"female",full:"♀ Effectively female-only — males are rare and usually sterile"}
+};
+
+function card(c){
+  const g = GENDER_TEXT[c.x];
+  return `<article class="card" data-x="${c.x}" data-key="${c.k}">
+    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon" loading="lazy">
+    <div class="body">
+      <h3>${c.t}</h3>
+      <p class="sub">${c.p}</p>
+      <span class="badge ${g.cls}">${g.label}</span>
+    </div>
+  </article>`;
+}
+
+document.getElementById("grid-solid").innerHTML = COLORS.filter(c=>c.g==="solid").map(card).join("");
+document.getElementById("grid-tabby").innerHTML = COLORS.filter(c=>c.g==="tabby").map(card).join("");
+document.getElementById("grid-specialty").innerHTML = COLORS.filter(c=>c.g==="specialty").map(card).join("");
+
+const modal=document.getElementById("modal");
+function openModal(key){
+  const c=COLORS.find(x=>x.k===key); if(!c) return;
+  const g=GENDER_TEXT[c.x];
+  document.getElementById("mImg").src=c.img;
+  document.getElementById("mImg").alt=c.t+" Maine Coon";
+  document.getElementById("mTitle").innerHTML=c.t;
+  document.getElementById("mPattern").innerHTML=c.p;
+  document.getElementById("mDesc").textContent=c.d;
+  document.getElementById("mVars").innerHTML=c.v.map(v=>`<li>${v}</li>`).join("");
+  const gl=document.getElementById("mGender");
+  gl.textContent=g.full;
+  gl.className="genderline badge "+g.cls;
+  modal.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeModal(){modal.classList.remove("open");document.body.style.overflow="auto"}
+
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".card[data-key]");
+  if(c){openModal(c.dataset.key);return}
+  if(e.target.classList.contains("close")||e.target===modal)closeModal();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+document.querySelectorAll(".filter-btn").forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    const f=b.dataset.filter;
+    document.querySelectorAll(".card[data-x]").forEach(card=>{
+      card.style.display=(f==="all"||card.dataset.x===f)?"":"none";
+    });
+  });
+});
+</script>
+</body>
+</html>

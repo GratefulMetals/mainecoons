@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maine Coon Breeder Worksheet</title>
+<meta name="description" content="Fillable worksheet for recording breeder answers about Maine Coon parents, kitten health, and paperwork.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>📋 Breeder Worksheet</h1>
+  <p class="lead">Record what the breeder tells you about the parents, the kitten you are being offered, and the paperwork promised. Entries save in this browser and can be exported or printed.</p>
+</header>
+
+<nav class="nav">
+  <a href="/">Home</a>
+  <a href="/colors.html">Color Guide</a>
+  <a href="/breeds.html">Breeds &amp; Lines</a>
+  <a href="/health.html">Health &amp; Screening</a>
+  <a href="/worksheet.html" class="current">Breeder Worksheet</a>
+</nav>
+
+<div class="toolbar">
+  <button class="primary" onclick="saveAll()">Save answers</button>
+  <button onclick="exportText()">Export as text</button>
+  <button onclick="window.print()">Print / Save PDF</button>
+  <button class="ghost" onclick="clearAll()">Clear worksheet</button>
+  <span class="status" id="status">Not saved yet</span>
+</div>
+
+<div class="count" id="progress">0 of 0 fields completed</div>
+<div class="bar"><span id="barfill"></span></div>
+
+<div class="tip"><b>How to use this:</b> ask for documentation rather than verbal assurance. Write down what you were actually told, note anything not yet provided, and review the blanks before paying a deposit.</div>
+
+<section class="section">
+  <h2>Visit &amp; Cattery Details</h2>
+  <div class="pair">
+    <div><label>Cattery / breeder name<input type="text" data-k="cattery"></label></div>
+    <div><label>Date of conversation or visit<input type="date" data-k="visitdate"></label></div>
+    <div><label>Location<input type="text" data-k="location"></label></div>
+    <div><label>Registry affiliation<input type="text" data-k="registry"><span class="hint">CFA, TICA, FIFe, etc. Ask which registry the cattery is registered with.</span></label></div>
+  </div>
+  <label>How you found this breeder, and your overall first impression<textarea data-k="impression"></textarea></label>
+</section>
+
+<section class="section">
+  <h2>Questions About the Parents</h2>
+  <p>Health screening applies to the parents, so these answers matter more than any claim about a line or country of origin.</p>
+  <div class="pair">
+    <div><label>Sire (father) name &amp; registration number<input type="text" data-k="sire"></label></div>
+    <div><label>Dam (mother) name &amp; registration number<input type="text" data-k="dam"></label></div>
+  </div>
+
+  <div class="qa">
+    <p class="q">Have both parents had echocardiograms for HCM, and when was the most recent one?</p>
+    <p class="why">Why it matters: DNA testing alone does not rule out HCM. Imaging by a qualified veterinary cardiologist is the primary screening method, and results expire in practical terms as the cat ages.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_hcm" placeholder="Dates, who performed the scan, whether you were shown the report..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">What DNA testing has been done on both parents, and at which lab?</p>
+    <p class="why">Why it matters: Maine Coon panels commonly include SMA, PKDef, and the breed-specific HCM variant. Ask to see the certificates rather than a summary.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_dna" placeholder="Lab name, panel contents, clear or carrier status for each parent..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Have the parents' hips been evaluated, and what were the findings?</p>
+    <p class="why">Why it matters: hip dysplasia is a recognized orthopedic concern in large, heavy-boned cats.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_hips" placeholder="Radiographs, evaluating veterinarian or scheme, ratings..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Was this a carrier-to-carrier pairing for any recessive condition?</p>
+    <p class="why">Why it matters: two carriers of the same recessive condition, such as SMA or PKDef, can produce affected kittens.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_carrier" placeholder="How the breeder explained the pairing decision..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">May I see the multi-generation pedigree and any health history in the line?</p>
+    <p class="why">Why it matters: pedigree documentation is what actually establishes ancestry claims, including any "European" or "Russian" line description.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_ped" placeholder="Generations shown, notable ancestors, disclosed conditions..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Can I meet the mother, and see where the cats live?</p>
+    <p class="why">Why it matters: the mother's temperament and the cleanliness and space of the environment tell you a great deal about socialization.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_meet" placeholder="Mother's temperament, conditions, how the cats reacted to you..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Has any cat in this line been diagnosed with HCM, SMA, PKDef, hip dysplasia, or other inherited disease?</p>
+    <p class="why">Why it matters: an honest breeder discloses problems. A claim that nothing has ever occurred in the line is itself worth questioning.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="p_disclosed" placeholder="What was disclosed, and how it was handled..."></textarea>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Questions About Your Kitten</h2>
+  <div class="pair">
+    <div><label>Kitten name / litter ID<input type="text" data-k="k_name"></label></div>
+    <div><label>Date of birth<input type="date" data-k="k_dob"></label></div>
+    <div><label>Sex<select data-k="k_sex"><option value="">Select</option><option>Male</option><option>Female</option></select></label></div>
+    <div><label>Color &amp; pattern as described<input type="text" data-k="k_color"><span class="hint">Cross-check against the color guide.</span></label></div>
+    <div><label>Earliest go-home date<input type="date" data-k="k_gohome"><span class="hint">Ask why that age was chosen.</span></label></div>
+    <div><label>Total price and what it includes<input type="text" data-k="k_price"></label></div>
+  </div>
+
+  <div class="qa">
+    <p class="q">What vaccinations, deworming, and veterinary exams has this kitten already had?</p>
+    <p class="why">Why it matters: you need the record to continue the schedule correctly with your own veterinarian.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_vax" placeholder="Dates, products used, examining veterinarian's name and clinic..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Has this kitten had any illness, injury, or veterinary concern so far?</p>
+    <p class="why">Why it matters: early issues shape your first vet visit and any follow-up plan.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_health" placeholder="What happened, treatment given, current status..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Will the kitten be microchipped, and spayed or neutered before placement?</p>
+    <p class="why">Why it matters: this affects registration terms, total cost, and your early veterinary scheduling.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_altered" placeholder="Chip number, altering plan or contract requirement..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">Is the kitten sold as a pet or with breeding rights, and what registration papers come with it?</p>
+    <p class="why">Why it matters: registration terms are the documented basis of any pedigree claim, and papers are sometimes withheld until proof of altering.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_rights" placeholder="Pet vs breeding, registry, when papers transfer..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">What food, litter, and daily routine is the kitten currently on?</p>
+    <p class="why">Why it matters: keeping the routine consistent for the first weeks reduces stress and digestive upset during the transition.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_routine" placeholder="Brand and amount, litter type, sleeping and play habits..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">How has the kitten been socialized with people, handling, noises, other pets, or children?</p>
+    <p class="why">Why it matters: early socialization influences adult confidence far more than any regional type label.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_social" placeholder="Raised underfoot, handled daily, exposure to dogs or children..."></textarea>
+  </div>
+
+  <div class="qa">
+    <p class="q">What health guarantee, return policy, and ongoing support do you provide?</p>
+    <p class="why">Why it matters: you want this in writing, including what happens if you can no longer keep the cat.</p>
+    <div class="chips" data-chips></div>
+    <textarea data-k="k_contract" placeholder="Guarantee length, conditions covered, required vet visit window..."></textarea>
+  </div>
+
+  <label>Questions the breeder asked you<span class="hint">Attentive breeders screen buyers too, which is a good sign.</span><textarea data-k="k_askedme"></textarea></label>
+</section>
+
+<section class="section">
+  <h2>Paperwork Promised</h2>
+  <p>Note the status of each document and the date you actually received it.</p>
+  <div class="pair">
+    <div><label>Multi-generation pedigree<input type="text" data-k="d_ped" placeholder="Received / promised by / not offered"></label></div>
+    <div><label>Parents' HCM echocardiogram reports<input type="text" data-k="d_echo"></label></div>
+    <div><label>Parents' DNA test certificates<input type="text" data-k="d_dna"></label></div>
+    <div><label>Kitten's vaccination &amp; deworming record<input type="text" data-k="d_vax"></label></div>
+    <div><label>Veterinary health certificate<input type="text" data-k="d_vet"></label></div>
+    <div><label>Signed sales contract &amp; health guarantee<input type="text" data-k="d_contract"></label></div>
+    <div><label>Microchip registration transfer<input type="text" data-k="d_chip"></label></div>
+    <div><label>Registration application or papers<input type="text" data-k="d_reg"></label></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Your Assessment</h2>
+  <label>Answers that felt clear, documented, and reassuring<textarea data-k="a_good"></textarea></label>
+  <label>Answers that were vague, missing, or need follow-up<textarea data-k="a_gaps"></textarea></label>
+  <label>Follow-up questions to ask before paying a deposit<textarea data-k="a_next"></textarea></label>
+  <label>Questions to bring to your own veterinarian<textarea data-k="a_vet"></textarea></label>
+  <label>Overall decision and reasoning<textarea data-k="a_decision"></textarea></label>
+</section>
+
+<div class="flag">
+  <b>Reasons to slow down:</b> refusal to show pedigree or testing paperwork, a claim that a particular line needs no health testing, pressure for a fast non-refundable deposit, no written contract, unwillingness to let you see where the cats live, or an offer to release a kitten unusually early. Verify documents rather than relying on verbal assurances or photos.
+</div>
+
+<footer>Answers are stored only in this browser on this device. Export or print a copy before clearing, switching devices, or using private browsing.</footer>
+</div>
+
+<script>
+const KEY="mc_breeder_worksheet_v1";
+const CHIPS=[["yes","Yes","on-yes"],["no","No","on-no"],["partial","Partly","on-na"],["pending","Pending","on-na"],["na","Not asked","on-na"]];
+
+document.querySelectorAll("[data-chips]").forEach((holder,i)=>{
+  holder.dataset.key="chip_"+i;
+  CHIPS.forEach(([val,label,cls])=>{
+    const b=document.createElement("button");
+    b.type="button"; b.className="chip"; b.textContent=label;
+    b.dataset.val=val; b.dataset.cls=cls;
+    b.onclick=()=>{
+      const wasActive=b.classList.contains(cls);
+      holder.querySelectorAll(".chip").forEach(c=>c.className="chip");
+      if(!wasActive) b.className="chip "+cls;
+      markDirty(); updateProgress();
+    };
+    holder.appendChild(b);
+  });
+});
+
+function collect(){
+  const d={fields:{},chips:{}};
+  document.querySelectorAll("[data-k]").forEach(el=>d.fields[el.dataset.k]=el.value);
+  document.querySelectorAll("[data-chips]").forEach(h=>{
+    const on=h.querySelector(".chip.on-yes,.chip.on-no,.chip.on-na");
+    d.chips[h.dataset.key]=on?on.dataset.val:"";
+  });
+  return d;
+}
+
+function saveAll(){
+  try{
+    localStorage.setItem(KEY,JSON.stringify(collect()));
+    setStatus("Saved "+new Date().toLocaleTimeString(),"var(--green)");
+  }catch(e){ setStatus("Could not save in this browser","var(--red)"); }
+}
+
+function load(){
+  let raw=null;
+  try{ raw=localStorage.getItem(KEY); }catch(e){ return; }
+  if(!raw) return;
+  try{
+    const d=JSON.parse(raw);
+    document.querySelectorAll("[data-k]").forEach(el=>{
+      if(d.fields && d.fields[el.dataset.k]!=null) el.value=d.fields[el.dataset.k];
+    });
+    document.querySelectorAll("[data-chips]").forEach(h=>{
+      const v=d.chips && d.chips[h.dataset.key];
+      if(!v) return;
+      const b=h.querySelector('.chip[data-val="'+v+'"]');
+      if(b) b.className="chip "+b.dataset.cls;
+    });
+    setStatus("Loaded saved answers","var(--blue)");
+  }catch(e){}
+}
+
+function clearAll(){
+  if(!confirm("Clear every answer on this worksheet? This cannot be undone.")) return;
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  document.querySelectorAll("[data-k]").forEach(el=>el.value="");
+  document.querySelectorAll(".chip").forEach(c=>c.className="chip");
+  setStatus("Worksheet cleared","var(--red)"); updateProgress();
+}
+
+function exportText(){
+  let out="MAINE COON BREEDER WORKSHEET\nExported: "+new Date().toLocaleString()+"\n\n";
+  document.querySelectorAll(".section").forEach(sec=>{
+    out+="== "+sec.querySelector("h2").textContent.trim()+" ==\n";
+    sec.querySelectorAll("label,.qa").forEach(node=>{
+      const field=node.querySelector("[data-k]");
+      if(!field) return;
+      let q,ans=field.value.trim();
+      if(node.classList.contains("qa")){
+        q=node.querySelector(".q").textContent.trim();
+        const on=node.querySelector(".chip.on-yes,.chip.on-no,.chip.on-na");
+        ans=(on?"["+on.textContent+"] ":"")+ans;
+      } else {
+        q=node.childNodes[0].textContent.trim();
+      }
+      out+="\n"+q+"\n"+(ans.trim()||"(blank)")+"\n";
+    });
+    out+="\n";
+  });
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([out],{type:"text/plain"}));
+  a.download="maine-coon-breeder-worksheet.txt";
+  a.click();
+  setStatus("Exported text file","var(--green)");
+}
+
+function setStatus(msg,color){
+  const s=document.getElementById("status");
+  s.textContent=msg; s.style.color=color;
+}
+function markDirty(){ setStatus("Unsaved changes","var(--gold)"); }
+
+function updateProgress(){
+  const fields=[...document.querySelectorAll("[data-k]")];
+  const chips=[...document.querySelectorAll("[data-chips]")];
+  const total=fields.length+chips.length;
+  const done=fields.filter(f=>f.value.trim()).length
+           + chips.filter(h=>h.querySelector(".chip.on-yes,.chip.on-no,.chip.on-na")).length;
+  document.getElementById("progress").textContent=done+" of "+total+" fields completed";
+  document.getElementById("barfill").style.width=(total?done/total*100:0)+"%";
+}
+
+document.querySelectorAll("[data-k]").forEach(el=>{
+  el.addEventListener("input",()=>{markDirty();updateProgress()});
+  el.addEventListener("change",()=>{markDirty();updateProgress()});
+});
+window.addEventListener("beforeunload",e=>{
+  if(document.getElementById("status").textContent==="Unsaved changes"){
+    e.preventDefault(); e.returnValue="";
+  }
+});
+load(); updateProgress();
+</script>
+</body>
+</html>
