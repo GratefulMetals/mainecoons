@@ -3,92 +3,221 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maine Coon Guide</title>
-<meta name="description" content="Interactive Maine Coon guide: coat colors, breed comparison, bloodline types, health risks, and a breeder question worksheet.">
+<title>Maine Coon Breeder Finder</title>
+<meta name="description" content="Select your ideal Maine Coon color and type, review health risks and vet timelines, find local breeders, and generate a personalized inquiry with breeder questionnaire.">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div class="wrap">
 
 <header class="hero">
-  <h1>🐾 Maine Coon Guide</h1>
-  <p class="lead">An interactive reference covering coat colors, how to tell Maine Coons apart from look-alike cats, what "American" and "Russian" lines really mean, breed health risks with screening timelines, and a worksheet for recording breeder answers.</p>
+  <h1>Maine Coon Breeder Finder</h1>
+  <p class="lead">Choose your Maine Coon's ideal color and type, understand breed health priorities, find local breeders, and send a personalized inquiry with a comprehensive questionnaire.</p>
+  <button id="themeToggle" class="theme-btn" aria-label="Toggle dark/light theme">Dark theme</button>
 </header>
 
 <nav class="nav">
-  <a href="/" class="current">Home</a>
+  <a href="/" class="current">Finder</a>
   <a href="/colors.html">Color Guide</a>
-  <a href="/breeds.html">Breeds &amp; Lines</a>
+  <a href="/breeds.html">Breeds &amp; Types</a>
   <a href="/health.html">Health &amp; Screening</a>
   <a href="/worksheet.html">Breeder Worksheet</a>
 </nav>
 
-<div class="cards">
+<section class="finder-step step-1 active">
+  <h2>Step 1: Choose Your Color</h2>
+  <p class="sub">What coat color interests you?</p>
+  <div class="color-grid" id="colorGrid">
+    <!-- Colors will be inserted by script -->
+  </div>
+</section>
 
-  <article class="card pad">
-    <span class="badge both">75+ combinations</span>
-    <h3>Color Guide</h3>
-    <p class="sub">Solids, tabbies, and specialty patterns</p>
-    <p>Browse fifteen coat varieties with click-to-enlarge photos, plain-language descriptions, and the common variations of each. Includes which patterns are effectively female-only and why.</p>
-    <ul class="facts">
-      <li><b>Solids:</b> black, blue, red, cream, white</li>
-      <li><b>Tabbies:</b> brown, silver, blue, red, cream</li>
-      <li><b>Specialty:</b> smoke, bicolor, tortie, torbie, calico</li>
-    </ul>
-    <p style="margin-top:16px"><a href="/colors.html">Open the color guide →</a></p>
-  </article>
+<section class="finder-step step-2">
+  <h2>Step 2: Select Your Preferred Type</h2>
+  <p class="sub">Maine Coons come in subtle regional variations.</p>
+  <div class="type-cards">
+    <div class="type-card" data-type="american">
+      <h3>American Type</h3>
+      <p>Larger frame, muscular build, prominent ruff. Valued for size and classical Maine Coon appearance.</p>
+      <ul class="traits">
+        <li>Weight: 13–18+ lbs</li>
+        <li>Head: Square, defined</li>
+        <li>Ears: Large with tufts</li>
+        <li>Body: Long, muscular</li>
+      </ul>
+      <button class="type-select" data-type="american">Select American Type</button>
+    </div>
+    <div class="type-card" data-type="european">
+      <h3>European Type</h3>
+      <p>Leaner, refined build, finer bone structure. Emphasizes elegance alongside breed standards.</p>
+      <ul class="traits">
+        <li>Weight: 11–15 lbs</li>
+        <li>Head: Refined contours</li>
+        <li>Ears: Proportionate to head</li>
+        <li>Body: Lean, athletic</li>
+      </ul>
+      <button class="type-select" data-type="european">Select European Type</button>
+    </div>
+  </div>
+</section>
 
-  <article class="card pad">
-    <span class="badge">Identification</span>
-    <h3>Breeds &amp; Lines</h3>
-    <p class="sub">Look-alikes and regional type labels</p>
-    <p>Compare the Maine Coon against the Norwegian Forest Cat and the domestic longhair, then see what the informal "American," "European," and "Russian" labels actually describe.</p>
-    <ul class="facts">
-      <li><b>Head shape:</b> the fastest visual cue</li>
-      <li><b>Body and coat:</b> what varies between the three</li>
-      <li><b>Line labels:</b> style trends, not separate breeds</li>
-    </ul>
-    <p style="margin-top:16px"><a href="/breeds.html">Compare them →</a></p>
-  </article>
+<section class="finder-step step-3">
+  <h2>Step 3: Key Health Priorities</h2>
+  <p class="sub">Maine Coons have breed-specific health considerations. Review these before contacting a breeder.</p>
+  
+  <div class="health-priorities">
+    <div class="priority-card major">
+      <h3>Hypertrophic Cardiomyopathy (HCM)</h3>
+      <p class="sub">Highest priority — affects up to 30% of Maine Coons.</p>
+      <p><b>What it is:</b> Thickening of the heart muscle, reducing its ability to pump effectively.</p>
+      <p><b>Screening:</b> Echocardiogram by a board-certified cardiologist. Repeat every 1–2 years.</p>
+      <p><b>Warning signs:</b> Rapid/irregular heartbeat, lethargy, difficulty breathing, hind-leg paralysis (blood clot).</p>
+      <p class="flag"><b>Ask breeders:</b> "What is the cardiac history of both parents? When was each last screened? Do you have echocardiogram reports?"</p>
+    </div>
 
-  <article class="card pad">
-    <span class="badge major">Health</span>
-    <h3>Health &amp; Screening</h3>
-    <p class="sub">Risks, timelines, and warning signs</p>
-    <p>The four priority conditions in the breed, an age-based veterinary schedule from kitten through senior, and the signs that warrant urgent care rather than waiting for a routine visit.</p>
-    <ul class="facts">
-      <li><b>HCM:</b> the highest-priority cardiac concern</li>
-      <li><b>Also covered:</b> hip dysplasia, SMA, PKDef</li>
-      <li><b>Schedule:</b> what to do at each life stage</li>
-    </ul>
-    <p style="margin-top:16px"><a href="/health.html">See the timeline →</a></p>
-  </article>
+    <div class="priority-card">
+      <h3>Hip Dysplasia</h3>
+      <p class="sub">Malformation of the hip joint; degree varies.</p>
+      <p><b>Screening:</b> X-rays evaluated by PennHIP or OFA. Preferably before breeding.</p>
+      <p><b>Warning signs:</b> Difficulty jumping, rear-leg weakness, limping, reduced activity.</p>
+      <p class="flag"><b>Ask breeders:</b> "Have both parents been hip-scored? What are the OFA or PennHIP results?"</p>
+    </div>
 
-  <article class="card pad">
-    <span class="badge">Interactive</span>
-    <h3>Breeder Worksheet</h3>
-    <p class="sub">Record answers as you ask</p>
-    <p>A fillable form for logging what a breeder tells you about the parents, your kitten, and the paperwork promised. Saves in your browser and exports to text or PDF.</p>
-    <ul class="facts">
-      <li><b>Parents:</b> echo, DNA, hips, pedigree</li>
-      <li><b>Kitten:</b> vaccines, contract, socialization</li>
-      <li><b>Output:</b> save, export, or print</li>
-    </ul>
-    <p style="margin-top:16px"><a href="/worksheet.html">Open the worksheet →</a></p>
-  </article>
+    <div class="priority-card">
+      <h3>Spinal Muscular Atrophy (SMA)</h3>
+      <p class="sub">Rare but severe; kitten becomes progressively weak.</p>
+      <p><b>Genetics:</b> Recessive — kitten must inherit the mutation from both parents.</p>
+      <p><b>Test:</b> DNA test available; ethical breeders test parents.</p>
+      <p class="flag"><b>Ask breeders:</b> "Have both parents been DNA-tested for SMA? Can you provide the results?"</p>
+    </div>
 
-</div>
+    <div class="priority-card">
+      <h3>Polycystic Kidney Disease (PKD)</h3>
+      <p class="sub">Cysts form in the kidneys; leads to kidney failure.</p>
+      <p><b>Genetics:</b> Recessive — inherited from both parents.</p>
+      <p><b>Test:</b> Ultrasound screening; DNA test for some lineages.</p>
+      <p class="flag"><b>Ask breeders:</b> "Have both parents been tested for PKD via ultrasound or DNA? What were the results?"</p>
+    </div>
+  </div>
 
-<div class="note">
-  <b>How to use this guide:</b> Start with the color guide if you are identifying a cat you already have, or with breeds and lines if you are trying to confirm whether a cat is a Maine Coon at all. If you are choosing a kitten, read the health page first, then take the worksheet with you when you contact breeders.
-</div>
+  <div class="vet-timeline">
+    <h3>Veterinary Care Timeline</h3>
+    <div class="stage">
+      <div class="age">8–12 weeks <span>Kitten arrival</span></div>
+      <div class="stage-detail">
+        <ul>
+          <li>First vet exam and vaccines (FVRCP series)</li>
+          <li>Parasite screening and prevention</li>
+          <li>Ask breeder for kitten's medical history</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="age">16 weeks <span>Booster and neuter/spay</span></div>
+      <div class="stage-detail">
+        <ul>
+          <li>Final kitten vaccine booster</li>
+          <li>Feline leukemia (FeLV) test if outdoor access</li>
+          <li>Schedule spay/neuter if planned</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="age">1 year <span>Adult baseline</span></div>
+      <div class="stage-detail">
+        <ul>
+          <li><b>Echocardiogram for HCM screening</b> (first priority)</li>
+          <li>Annual wellness exam</li>
+          <li>Blood and urine baseline</li>
+          <li>Discuss dental care plan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="age">2–7 years <span>Prime adult</span></div>
+      <div class="stage-detail">
+        <ul>
+          <li>Annual wellness exams</li>
+          <li>Repeat echocardiogram every 1–2 years (HCM)</li>
+          <li>Monitor weight and activity</li>
+          <li>Watch for joint issues given large frame</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="age">7+ years <span>Senior</span></div>
+      <div class="stage-detail">
+        <ul>
+          <li>Wellness exams every 6 months</li>
+          <li>Annual or biennial echocardiogram</li>
+          <li>Blood work to monitor kidney and thyroid function</li>
+          <li>Discuss pain management and quality-of-life planning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <button class="primary-btn" onclick="advanceTo(4)">Continue to Breeder Search</button>
+</section>
+
+<section class="finder-step step-4">
+  <h2>Step 4: Find Local Breeders</h2>
+  <p class="sub">Enter your location and search radius to find Maine Coon breeders near you.</p>
+  
+  <div class="search-form">
+    <div class="form-group">
+      <label for="zipInput">ZIP Code (US only)</label>
+      <input type="text" id="zipInput" placeholder="e.g., 02134" maxlength="5">
+      <div class="hint">We'll use this to calculate distance from breeders.</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="radiusInput">Search Radius (miles)</label>
+      <select id="radiusInput">
+        <option value="">Choose a radius...</option>
+        <option value="25">25 miles</option>
+        <option value="50">50 miles</option>
+        <option value="100">100 miles</option>
+        <option value="200">200 miles</option>
+        <option value="500">500 miles (nationwide)</option>
+      </select>
+      <div class="hint">How far are you willing to travel for a breeder consultation?</div>
+    </div>
+
+    <button class="primary-btn" id="searchBtn" disabled>Search Breeders</button>
+    <div id="searchStatus" class="search-status"></div>
+  </div>
+
+  <div id="breederResults" class="breeder-results"></div>
+</section>
+
+<section class="finder-step step-5">
+  <h2>Step 5: Review and Contact</h2>
+  <p class="sub">Prepare your inquiry with the breeder questionnaire pre-loaded.</p>
+  
+  <div id="inquiryPreview" class="inquiry-preview"></div>
+  <div id="selectedBreederInfo" class="selected-breeder-info"></div>
+  
+  <button class="primary-btn" id="generateEmailBtn" disabled>Generate Email Draft</button>
+  <div id="emailDraft" class="email-draft-box"></div>
+</section>
 
 <div class="flag">
-  <b>Educational reference only.</b> Nothing here diagnoses a cat or replaces veterinary advice, and appearance alone never establishes pedigree. Any cat with breathing difficulty, collapse, sudden hind-leg weakness, severe pain, or marked lethargy needs urgent veterinary attention.
+  <b>Important Disclaimer:</b> This tool provides educational guidance only. Breeder listings are illustrative; verify all credentials independently. No breeders or health certifications are guaranteed or endorsed by this site. Always request veterinary-verified health screening documentation before making any kitten purchase commitment.
 </div>
 
-<footer>Built as a static reference. Photos are illustrative examples of each color or type.</footer>
+<nav class="nav" style="margin-top:40px">
+  <a href="/">Finder</a>
+  <a href="/colors.html">Color Guide</a>
+  <a href="/breeds.html">Breeds &amp; Types</a>
+  <a href="/health.html">Health &amp; Screening</a>
+  <a href="/worksheet.html">Breeder Worksheet</a>
+</nav>
+
+<footer>Maine Coon Breeder Finder — Educational reference and breeder directory guide.</footer>
 
 </div>
+
+<script src="/script.js"></script>
 </body>
 </html>
