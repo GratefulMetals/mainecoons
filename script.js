@@ -122,7 +122,7 @@ function setupTheme() {
   const preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
   document.documentElement.dataset.theme = preferred;
   const button = document.getElementById('themeToggle');
-  const update = () => { button.textContent = document.documentElement.dataset.theme === 'dark' ? '☀ Light' : '☾ Dark'; };
+  const update = () => { button.textContent = document.documentElement.dataset.theme === 'dark' ? 'Light theme' : 'Dark theme'; };
   update();
   button.addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
