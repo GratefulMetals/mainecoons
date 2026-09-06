@@ -153,8 +153,8 @@ const GENDER_TEXT = {
 
 function card(c){
   const g = GENDER_TEXT[c.x];
-  return `<article class="card" data-x="${c.x}" data-key="${c.k}">
-    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon" loading="lazy">
+  return `<article class="card" data-x="${c.x}" data-key="${c.k}" tabindex="0" role="button" aria-label="View full photo and details for ${c.t} Maine Coon">
+    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon thumbnail. Click to enlarge." loading="lazy">
     <div class="body">
       <h3>${c.t}</h3>
       <p class="sub">${c.p}</p>
@@ -190,7 +190,11 @@ document.addEventListener("click",e=>{
   if(c){openModal(c.dataset.key);return}
   if(e.target.classList.contains("close")||e.target===modal)closeModal();
 });
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+  const card = document.activeElement?.closest?.(".card[data-key]");
+  if(card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openModal(card.dataset.key); }
+});
 
 document.querySelectorAll(".filter-btn").forEach(b=>{
   b.addEventListener("click",()=>{
