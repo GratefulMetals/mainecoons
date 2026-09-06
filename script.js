@@ -1,14 +1,14 @@
 const colors = [
-  { id: 'black', name: 'Solid Black', description: 'A dense, glossy black coat with no tabby pattern.', swatch: '#111827' },
-  { id: 'white', name: 'Solid White', description: 'A clean white coat; eye color may vary.', swatch: '#f7f4ed' },
-  { id: 'red', name: 'Solid Red', description: 'Warm orange-red, often with subtle ghost tabby markings.', swatch: '#b85a36' },
-  { id: 'silver', name: 'Silver Tabby', description: 'Silver ground color with dark tabby markings.', swatch: '#aeb6c2' },
-  { id: 'brown', name: 'Brown Tabby', description: 'Classic Maine Coon coloring with warm brown ground and dark stripes.', swatch: '#765c42' },
-  { id: 'blue', name: 'Blue', description: 'Soft blue-gray dilution of black pigment.', swatch: '#7b879b' },
-  { id: 'tortie', name: 'Tortoiseshell', description: 'Black and red patches; most often female due to sex-linked color genetics.', swatch: 'linear-gradient(135deg,#20232b 48%,#c87952 48%)' },
-  { id: 'calico', name: 'Calico', description: 'White with distinct black and red patches.', swatch: 'linear-gradient(135deg,#f7f4ed 40%,#20232b 40% 70%,#c87952 70%)' },
-  { id: 'smoke', name: 'Smoke', description: 'Dark tips with a pale undercoat visible when the fur parts.', swatch: 'linear-gradient(90deg,#1d2635,#aeb6c2,#1d2635)' },
-  { id: 'cream', name: 'Cream', description: 'Soft warm dilution of red pigment.', swatch: '#d5b69d' }
+  { id: 'black', name: 'Solid Black', description: 'A dense, glossy black coat with no tabby pattern.', image: '/maine-coon-black.png' },
+  { id: 'white', name: 'Solid White', description: 'A clean white coat; eye color may vary.', image: '/maine-coon-white.png' },
+  { id: 'red', name: 'Solid Red', description: 'Warm orange-red, often with subtle ghost tabby markings.', image: '/maine-coon-red.png' },
+  { id: 'silver', name: 'Silver Tabby', description: 'Silver ground color with dark tabby markings.', image: '/maine-coon-silver-tabby.png' },
+  { id: 'brown', name: 'Brown Tabby', description: 'Classic Maine Coon coloring with warm brown ground and dark stripes.', image: '/maine-coon-brown-tabby.png' },
+  { id: 'blue', name: 'Blue', description: 'Soft blue-gray dilution of black pigment.', image: '/maine-coon-blue.png' },
+  { id: 'tortie', name: 'Tortoiseshell', description: 'Black and red patches; most often female due to sex-linked color genetics.', image: '/maine-coon-tortie.png' },
+  { id: 'calico', name: 'Calico', description: 'White with distinct black and red patches.', image: '/maine-coon-calico.png' },
+  { id: 'smoke', name: 'Smoke', description: 'Dark tips with a pale undercoat visible when the fur parts.', image: '/maine-coon-black-smoke.png' },
+  { id: 'cream', name: 'Cream', description: 'Soft warm dilution of red pigment.', image: '/maine-coon-cream.png' }
 ];
 
 const breeders = [
@@ -31,7 +31,7 @@ function renderColors() {
   const grid = document.getElementById('colorGrid');
   grid.innerHTML = colors.map((color) => `
     <button class="color-option" data-color="${color.id}" aria-pressed="false">
-      <span class="swatch" style="background:${color.swatch}"></span>
+      <img class="color-photo" src="${color.image}" alt="Maine Coon with a ${color.name.toLowerCase()} coat" loading="lazy">
       <strong>${color.name}</strong>
       <span>${color.description}</span>
     </button>
