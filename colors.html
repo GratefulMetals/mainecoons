@@ -1,251 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Maine Coon Color Guide</title>
-<meta name="description" content="Maine Coon coat colors and patterns with photos, descriptions, and common variations.">
+<meta name="description" content="An educational, image-first guide to Maine Coon colors, patterns, sex-linked traits, and type looks.">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<div class="wrap">
-
-<header class="hero">
-  <h1>🐱 Maine Coon Color Guide</h1>
-  <p class="lead">Explore the coat colors and patterns found in Maine Coons. Click any thumbnail for a full-frame view, description, and common variations.</p>
-</header>
-
-<nav class="nav">
-  <a href="/">Home</a>
-  <a href="/colors.html" class="current">Color Guide</a>
-  <a href="/breeds.html">Breeds &amp; Lines</a>
-  <a href="/health.html">Health &amp; Screening</a>
-  <a href="/worksheet.html">Breeder Worksheet</a>
-</nav>
-
-<div class="filters">
-  <button class="filter-btn active" data-filter="all">All Colors</button>
-  <button class="filter-btn" data-filter="both">Both Sexes</button>
-  <button class="filter-btn" data-filter="female">Effectively Female-Only</button>
+<div class="wrap guide-wrap">
+<header class="hero guide-hero"><button class="theme-btn" id="themeToggle" type="button">Dark theme</button><p class="eyebrow">Visual field guide</p><h1>Maine Coon Color Guide</h1><p class="lead">Compare the coat you want with the pattern, sex likelihood, and type look you may see in a real kitten.</p></header>
+<nav class="nav" aria-label="Primary"><a href="/">Home</a><a href="/colors.html" class="current">Color Guide</a><a href="/breeds.html">Breeds &amp; Lines</a><a href="/health.html">Health &amp; Screening</a><a href="/worksheet.html">Breeder Worksheet</a></nav>
+<section class="guide-intro"><div><span class="step-label">Start here</span><h2>Choose by appearance. Learn the genetics.</h2><p>Use the thumbnails like the Finder selector. Every image is an illustrative generated Maine Coon example; it is not evidence of pedigree, registry status, or exact genetic expression.</p></div><div class="legend"><span class="badge both">Both sexes</span><span class="badge female">Female-biased</span><span class="badge muted-badge">Illustrative image</span></div></section>
+<section class="compare-panel" aria-labelledby="compare-title"><div><span class="step-label">Match the look</span><h2 id="compare-title">Color + type preview</h2><p>Select a color and an informal type label to understand how the same coat can be presented differently.</p></div><div class="compare-controls"><label>Color<select id="compareColor"></select></label><label>Type/look<select id="compareType"><option value="american">American look</option><option value="european">European look</option><option value="russian">Russian look</option></select></label></div><div id="compareOutput" class="compare-output"></div></section>
+<section class="note"><b>Important distinction:</b> American, European, and Russian are informal look or line labels used by breeders and buyers. They are not separate Maine Coon breeds, and appearance alone cannot prove ancestry. Tortoiseshell, torbie, and calico patterns are female-biased because black- and red-based pigment are X-linked; rare males are possible.</section>
+<div class="filters" role="group" aria-label="Filter colors"><button class="filter-btn active" data-filter="all">All colors</button><button class="filter-btn" data-filter="both">Both sexes</button><button class="filter-btn" data-filter="female">Female-biased</button></div>
+<div id="guideSections"></div>
+<div class="tip"><b>How to verify a color:</b> Ask the breeder for photos in natural light, part the coat to inspect the undercoat, and ask how the color is recorded on the pedigree. Red and cream often show ghost tabby markings; smoke must show a pale base at the root; a photo cannot establish genetic color by itself.</div>
+<footer>Generated images are educational illustrations. Registry terminology can vary slightly; confirm color and health documentation with the breeder and registry.</footer>
 </div>
-
-<div class="note">
-  <b>About sex and color:</b> Maine Coons come in a very large number of color and pattern combinations. Nearly all of them occur in both males and females. Tortoiseshell, torbie, and calico patterns are the exception: because the genes for black-based and red-based pigment sit on the X chromosome, these patterns are overwhelmingly female. Males with them do occur but are rare and usually result from an unusual chromosome arrangement, and such males are typically sterile.
-</div>
-
-<h2 class="section-title">Solid Colors</h2>
-<div class="cards" id="grid-solid"></div>
-
-<h2 class="section-title">Tabby Patterns</h2>
-<div class="cards" id="grid-tabby"></div>
-
-<h2 class="section-title">Specialty Patterns</h2>
-<div class="cards" id="grid-specialty"></div>
-
-<div class="tip">
-  <b>Reading a coat accurately:</b> Part the fur to check the undercoat before deciding on a label. A white base with colored tips means smoke or silver rather than a true solid, and faint "ghost" striping in strong light is common in young red and cream cats that will still be registered as solids.
-</div>
-
-<footer>Photos are illustrative examples. Registry color naming varies slightly between organizations.</footer>
-</div>
-
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
-  <div class="inner">
-    <button class="close" aria-label="Close">×</button>
-    <div class="viewer-stage"><img id="mImg" src="" alt=""></div>
-    <div class="angle-controls" role="group" aria-label="Photo angles">
-      <button class="angle-btn active" data-angle="front">Front</button>
-      <button class="angle-btn" data-angle="profile">Profile</button>
-      <button class="angle-btn" data-angle="rear">Rear / coat</button>
-      <button class="angle-btn" data-angle="turntable">360 view</button>
-    </div>
-    <p class="viewer-note" id="viewerNote">Illustrative front view. Use the angle controls to inspect coat shape and furnishings.</p>
-    <div class="detail">
-      <h3 id="mTitle"></h3>
-      <p class="sub" id="mPattern"></p>
-      <p class="desc" id="mDesc"></p>
-      <div class="varbox">
-        <h4>Common Variations</h4>
-        <ul id="mVars"></ul>
-      </div>
-      <div class="genderline" id="mGender"></div>
-    </div>
-  </div>
-</div>
-
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="inner"><button class="close" id="closeModal" aria-label="Close">×</button><div class="viewer-stage"><img id="mImg" src="" alt=""></div><div class="angle-controls" role="group" aria-label="Available photo views"><button class="angle-btn active" data-angle="front">Front</button><button class="angle-btn" data-angle="profile">Profile</button><button class="angle-btn" data-angle="coat">Coat detail</button><button class="angle-btn unavailable" data-angle="turntable" disabled>360 unavailable</button></div><p class="viewer-note" id="viewerNote"></p><div class="detail"><h3 id="mTitle"></h3><p class="sub" id="mPattern"></p><p class="desc" id="mDesc"></p><div class="varbox"><h4>Common variations</h4><ul id="mVars"></ul></div><div class="genderline" id="mGender"></div></div></div></div>
 <script>
-const IMG = {
-  black:"/maine-coon-black.png",
-  blue:"/maine-coon-blue.png",
-  red:"/maine-coon-red.png",
-  cream:"/maine-coon-cream.png",
-  cream2:"/maine-coon-cream.png",
-  white:"/maine-coon-white.png",
-  brown:"/maine-coon-brown-tabby.png",
-  brown2:"/maine-coon-red.png",
-  silver:"/maine-coon-silver-tabby.png",
-  mix:"/maine-coon-black-smoke.png",
-  patterns:"/maine-coon-black.png",
-  tortie:"/maine-coon-tortie.png",
-  tortie2:"/maine-coon-tortie.png",
-  calico:"/maine-coon-calico.png"
-};
-const PROFILE = {
-  black:"/maine-coon-black-profile.png", blue:"/maine-coon-blue-profile.png", red:"/maine-coon-red-profile.png", cream:"/maine-coon-cream-profile.png", white:"/maine-coon-white-profile.png", brown:"/maine-coon-brown-tabby-profile.png", silver:"/maine-coon-silver-tabby-profile.png", mix:"/maine-coon-black-smoke-profile.png", tortie:"/maine-coon-tortie-profile.png", calico:"/maine-coon-calico-profile.png"
-};
-
-const COLORS = [
- {g:"solid",k:"black",t:"Black",p:"Solid / self color",x:"both",img:IMG.black,
-  d:"A coal-black coat that should be dense and even from root to tip with no rusting, shading, or visible markings. Nose leather and paw pads are black or dark brown, and eye color is typically copper, gold, or green. Black is one of the two foundation pigments of the entire breed palette, since every Maine Coon color derives from black-based or red-based pigment plus modifiers.",
-  v:["Solid black with no markings","Black with white (tuxedo and other bicolors)","Black smoke, with a white undercoat under black tips","Black silver tabby, with black markings on a silver ground","Sun-faded or 'rusty' black, a coat-condition effect rather than a separate color"]},
-
- {g:"solid",k:"blue",t:"Blue",p:"Solid / dilute of black",x:"both",img:IMG.blue,
-  d:"Blue is the dilute form of black, produced by a recessive gene that spaces pigment granules along the hair shaft and reads to the eye as a soft slate gray. The coat should be one even tone from root to tip. Nose leather and paw pads are blue-gray, and eyes are usually copper, gold, or green. Two blue-carrying parents are required to produce blue kittens.",
-  v:["Solid blue with no markings","Blue and white bicolor","Blue smoke, with a white undercoat","Blue silver tabby","Blue classic or mackerel tabby"]},
-
- {g:"solid",k:"red",t:"Red",p:"Solid / orange",x:"both",img:IMG.red,
-  d:"Red is a deep warm orange, often called ginger outside of pedigree circles. True solid red is uncommon in practice because the red gene does not fully suppress tabby markings, so most red Maine Coons show at least faint striping on the legs, tail, or face. Nose leather and paw pads are brick red. Because red is carried on the X chromosome, red males need only one copy while red females need two, so red is more frequently seen in males.",
-  v:["Solid red, usually with residual ghost striping","Red tabby, by far the most common red presentation","Red silver tabby, sometimes called cameo","Red smoke","Red and white bicolor"]},
-
- {g:"solid",k:"cream",t:"Cream",p:"Solid / dilute of red",x:"both",img:IMG.cream,
-  d:"Cream is the dilute of red, giving a soft buff or pale apricot tone that should be even across the body. As with red, faint tabby ghost markings are common and do not disqualify the cat from being registered as a solid. Nose leather and paw pads are pink. Cream requires both the dilute gene and the red gene, which makes it less common than red.",
-  v:["Solid cream, often with faint ghost markings","Cream tabby","Cream silver tabby","Cream smoke","Cream and white bicolor"]},
-
- {g:"solid",k:"white",t:"White",p:"Solid / masking gene",x:"both",img:IMG.white,
-  d:"White in cats is not a pigment but a masking effect. A dominant white gene switches off pigment production across the coat, so a white Maine Coon genetically carries some other color underneath that simply never expresses. Nose leather and paw pads are pink. Eye color varies more here than in any other color and may be gold, copper, green, blue, or odd-eyed. White cats with blue eyes have a higher likelihood of congenital deafness, which is worth discussing with a breeder or veterinarian.",
-  v:["Solid white with gold or copper eyes","Solid white with green eyes","Solid white with blue eyes","Odd-eyed white, one blue and one gold or green","Kittens occasionally born with a small colored 'kitten cap' that fades with age"]},
-
- {g:"tabby",k:"brown-tabby",t:"Brown Tabby",p:"Classic, mackerel, or ticked",x:"both",img:IMG.brown,
-  d:"The brown tabby is the pattern most people picture when they think of a Maine Coon. Dense black or dark brown markings sit on a warm brown to coppery ground color. Every tabby, regardless of color, shows the same signature features: an M-shaped marking on the forehead, pencil lines on the face, rings on the legs and tail, and spotting on the belly. The pattern type describes how the body markings are arranged.",
-  v:["Classic tabby, with wide swirls and a bullseye on the flank","Mackerel tabby, with narrow vertical stripes like fish bones","Ticked tabby, with banded hairs and minimal body markings","Brown tabby with white","Brown patched tabby, which is a torbie"]},
-
- {g:"tabby",k:"silver-tabby",t:"Silver Tabby",p:"Black markings on a silver ground",x:"both",img:IMG.silver,
-  d:"A silver tabby is genetically a brown tabby carrying the inhibitor gene, which suppresses warm yellow pigment in the undercoat and leaves it near-white. The result is dense black markings on a bright, cold silver background instead of a warm brown one. Silver tabbies typically have black-rimmed eyes, a brick nose outlined in black, and striking contrast. Warm brassy tones in the ground color are considered a fault in show cats.",
-  v:["Silver classic tabby","Silver mackerel tabby","Silver ticked tabby","Blue silver tabby, the dilute version","Red silver tabby, often called cameo tabby"]},
-
- {g:"tabby",k:"blue-tabby",t:"Blue Tabby",p:"Dilute tabby",x:"both",img:IMG.patterns,
-  d:"The blue tabby carries the dilute gene over a brown tabby base, so the markings appear slate blue-gray against a paler fawn or ivory ground. The overall impression is softer and cooler than a brown tabby, with lower contrast between markings and background. All standard tabby features are present, just rendered in gray. Nose leather is old rose and paw pads are blue-gray.",
-  v:["Blue classic tabby","Blue mackerel tabby","Blue ticked tabby","Blue silver tabby","Blue tabby with white"]},
-
- {g:"tabby",k:"red-tabby",t:"Red Tabby",p:"Orange markings on a lighter ground",x:"both",img:IMG.brown2,
-  d:"Red tabbies show deep orange markings over a paler orange or cream ground. Because the red gene does not permit a true non-agouti solid, essentially every red Maine Coon reads as some form of tabby, which is why red tabby is far more common than solid red. Nose leather and paw pads are brick red, and eye color is usually gold or copper.",
-  v:["Red classic tabby","Red mackerel tabby","Red ticked tabby","Red silver tabby, or cameo tabby","Red tabby with white"]},
-
- {g:"tabby",k:"cream-tabby",t:"Cream Tabby",p:"Dilute red tabby",x:"both",img:IMG.cream2,
-  d:"The cream tabby is the dilute counterpart of the red tabby, with buff markings on a pale cream ground. Contrast is naturally low, so the pattern can be subtle and is sometimes easiest to see in raking light or on the legs and tail. Nose leather and paw pads are pink. Cream tabbies often deepen slightly in tone as they mature.",
-  v:["Cream classic tabby","Cream mackerel tabby","Cream ticked tabby","Cream silver tabby","Cream tabby with white"]},
-
- {g:"specialty",k:"smoke",t:"Smoke",p:"Solid tips over a white undercoat",x:"both",img:IMG.mix,
-  d:"A smoke looks like a solid-colored cat at rest, then reveals a bright white undercoat when it moves, turns, or has its fur parted. This comes from the inhibitor gene acting on a non-agouti cat, so pigment is confined to the outer portion of each hair with white at the base. The effect is dramatic in a full Maine Coon coat, particularly around the ruff and britches. Smoke kittens can be difficult to identify early and often become more obvious as the coat develops.",
-  v:["Black smoke, the most frequently seen","Blue smoke","Red smoke","Cream smoke","Tortoiseshell smoke"]},
-
- {g:"specialty",k:"bicolor",t:"Bicolor &amp; White",p:"Any color combined with white",x:"both",img:IMG.patterns,
-  d:"Bicolor describes any base color or pattern paired with white spotting, which is controlled separately from the color itself. The amount of white ranges from a few toes and a locket to a nearly all-white cat with color confined to the head and tail. Registries subdivide these by how much white is present, and the named patterns below are the most commonly used descriptions.",
-  v:["Tuxedo, with white chest, paws, and belly","Van, with color restricted to head and tail","Harlequin, with scattered color patches on white","Cap and saddle, with color on the head and back","Locket or mitted, with minimal white on chest or feet"]},
-
- {g:"specialty",k:"tortoiseshell",t:"Tortoiseshell",p:"Black-based and red-based patches",x:"female",img:IMG.tortie,
-  d:"A tortoiseshell mixes black-based and red-based pigment across the coat in patches, with no white. Each tortie is visually unique because the pattern arises from random X-chromosome inactivation early in development, meaning the distribution cannot be predicted or reproduced. Torties are effectively female-only: a male needs an extra X chromosome to display the pattern, which is rare and generally accompanied by sterility.",
-  v:["Black tortie, with black and red patching","Blue-cream, the dilute tortie","Tortie smoke, with a white undercoat","Tortie with white, commonly called calico","Patched tabby, or torbie, when tabby markings show through"]},
-
- {g:"specialty",k:"torbie",t:"Torbie",p:"Patched tabby",x:"female",img:IMG.tortie2,
-  d:"A torbie, formally a patched tabby, is a tortoiseshell whose colored areas also carry visible tabby striping. The cat shows tortie patching and tabby structure at the same time, so you see the forehead M, ringed legs, and ringed tail within red and black regions. Torbies are sometimes mistaken for plain brown tabbies until the red patches are noticed, particularly on the face and legs. Like torties, they are effectively female-only.",
-  v:["Brown torbie","Blue torbie, the dilute version","Silver torbie","Torbie with white","Classic or mackerel structure within the patches"]},
-
- {g:"specialty",k:"calico",t:"Calico",p:"Tortoiseshell with white",x:"female",img:IMG.calico,
-  d:"A calico is a tortoiseshell carrying white spotting, producing three distinct colors: black-based, red-based, and white. The white spotting gene pushes the colored areas into larger, cleaner, more separated patches than the intermingled look of a tortie without white, which is why calicos often appear bolder and more graphic. As with torties and torbies, calicos are effectively female-only.",
-  v:["Standard calico in black, red, and white","Dilute calico in blue, cream, and white","Caliby, a calico with tabby markings in the patches","High-white calico, mostly white with limited patches","Calico smoke"]}
+const TYPE_INFO={american:{label:'American look',text:'Often presented with a balanced rectangular body, broad square muzzle, moderate ear furnishings, and a softer, classic expression.'},european:{label:'European look',text:'Often presented with a more angular face, taller ears, stronger lynx tips, and a more dramatic, wild silhouette.'},russian:{label:'Russian look',text:'A marketing label often associated with strong cheekbones, heavy bone, high ear furnishings, and a rugged expression. It is not a separate breed.'}};
+const COLORS=[
+{id:'black',name:'Solid Black',group:'Solid colors',pattern:'Solid / self color',sex:'both',image:'/maine-coon-black.png',profile:'/maine-coon-black-profile.png',desc:'Dense black pigment should read evenly from root to tip. Rusting, ghost markings, and sun fading can change the appearance without creating a new color.',vars:['Black and white bicolor','Black smoke','Black silver tabby'],genetics:'Black-based pigment; both sexes.'},
+{id:'white',name:'Solid White',group:'Solid colors',pattern:'White masking gene',sex:'both',image:'/maine-coon-white.png',profile:'/maine-coon-white-profile.png',desc:'White masks the underlying genetic color. Eye color may be gold, green, blue, or odd-eyed. Blue-eyed white cats have a higher deafness risk worth discussing with a breeder.',vars:['Gold-eyed white','Blue-eyed white','Odd-eyed white'],genetics:'Both sexes; eye and hearing screening matter.'},
+{id:'red',name:'Red',group:'Solid colors',pattern:'Red / orange',sex:'both',image:'/maine-coon-red.png',profile:'/maine-coon-red-profile.png',desc:'Red is warm orange pigment. Faint tabby markings are common because red cats usually retain visible tabby structure, even when called solid.',vars:['Red tabby','Red silver / cameo','Red smoke'],genetics:'Both sexes; more common in males because red is X-linked.'},
+{id:'cream',name:'Cream',group:'Solid colors',pattern:'Dilute red',sex:'both',image:'/maine-coon-cream.png',profile:'/maine-coon-cream-profile.png',desc:'Cream is the dilute form of red: pale buff or apricot. Ghost striping is common and should be explained by the breeder rather than assumed to be a different color.',vars:['Cream tabby','Cream silver','Cream and white'],genetics:'Both sexes; requires red plus dilution.'},
+{id:'brown-tabby',name:'Brown Tabby',group:'Tabby patterns',pattern:'Classic, mackerel, or ticked',sex:'both',image:'/maine-coon-brown-tabby.png',profile:'/maine-coon-brown-tabby-profile.png',desc:'Warm brown ground color with dark markings. Look for the forehead M, facial pencil lines, leg and tail rings, and belly spotting.',vars:['Classic tabby swirls','Mackerel stripes','Ticked tabby'],genetics:'Both sexes; pattern structure is the key identifier.'},
+{id:'silver-tabby',name:'Silver Tabby',group:'Tabby patterns',pattern:'Black markings on silver',sex:'both',image:'/maine-coon-silver-tabby.png',profile:'/maine-coon-silver-tabby-profile.png',desc:'The inhibitor gene suppresses warm pigment in the undercoat, creating a cool silver ground with dark markings. Warm brassiness can be a fault in show evaluation.',vars:['Silver classic','Silver mackerel','Silver ticked'],genetics:'Both sexes; inspect the ground color and undercoat.'},
+{id:'blue',name:'Blue',group:'Dilutes',pattern:'Dilute black',sex:'both',image:'/maine-coon-blue.png',profile:'/maine-coon-blue-profile.png',desc:'A soft slate-gray version of black caused by dilution. The coat should appear even, though blue tabby and blue smoke are separate pattern combinations.',vars:['Blue tabby','Blue smoke','Blue and white'],genetics:'Both sexes; recessive dilution.'},
+{id:'smoke',name:'Black Smoke',group:'Modifiers',pattern:'Dark tips over pale undercoat',sex:'both',image:'/maine-coon-black-smoke.png',profile:'/maine-coon-black-smoke-profile.png',desc:'A smoke looks solid until the coat parts or moves. The base of each hair should be pale silver-white beneath dark tips, especially in the ruff and britches.',vars:['Black smoke','Blue smoke','Tortie smoke'],genetics:'Both sexes; the undercoat is the deciding visual clue.'},
+{id:'tortie',name:'Tortoiseshell',group:'Female-biased patterns',pattern:'Black-based and red-based patches',sex:'female',image:'/maine-coon-tortie.png',profile:'/maine-coon-tortie-profile.png',desc:'Black and red patches are distributed uniquely by X-chromosome inactivation. No two torties have the same patch map.',vars:['Black tortie','Blue-cream dilute tortie','Tortie smoke'],genetics:'Strongly female-biased; rare males are usually sterile.'},
+{id:'calico',name:'Calico',group:'Female-biased patterns',pattern:'Tortoiseshell with white',sex:'female',image:'/maine-coon-calico.png',profile:'/maine-coon-calico-profile.png',desc:'Black-based, red-based, and white patches. The white spotting gene separates the color areas into a more graphic pattern than a tortie without white.',vars:['Dilute calico','Caliby','High-white calico'],genetics:'Strongly female-biased; rare males are usually sterile.'}
 ];
-
-const GENDER_TEXT = {
-  both:{label:"Both Sexes",cls:"both",full:"✓ Occurs in both male and female Maine Coons"},
-  female:{label:"Effectively Female-Only",cls:"female",full:"♀ Effectively female-only — males are rare and usually sterile"}
-};
-
-function card(c){
-  const g = GENDER_TEXT[c.x];
-  return `<article class="card" data-x="${c.x}" data-key="${c.k}" tabindex="0" role="button" aria-label="View full photo and details for ${c.t} Maine Coon">
-    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon thumbnail, front view. Click to enlarge and view angles." loading="lazy">
-    <span class="view-hint">Front · profile · coat view</span>
-    <div class="body">
-      <h3>${c.t}</h3>
-      <p class="sub">${c.p}</p>
-      <span class="badge ${g.cls}">${g.label}</span>
-    </div>
-  </article>`;
-}
-
-document.getElementById("grid-solid").innerHTML = COLORS.filter(c=>c.g==="solid").map(card).join("");
-document.getElementById("grid-tabby").innerHTML = COLORS.filter(c=>c.g==="tabby").map(card).join("");
-document.getElementById("grid-specialty").innerHTML = COLORS.filter(c=>c.g==="specialty").map(card).join("");
-
-const modal=document.getElementById("modal");
-let activeColor = null;
-let activeAngle = "front";
-function angleImage(c, angle){
-  if(angle === "profile") return PROFILE[c.k] || PROFILE[c.k.split('-')[0]] || c.img;
-  if(angle === "rear") return PROFILE[c.k] || PROFILE[c.k.split('-')[0]] || c.img;
-  return c.img;
-}
-function updateViewer(angle){
-  if(!activeColor) return;
-  activeAngle = angle;
-  const image = document.getElementById("mImg");
-  image.src = angleImage(activeColor, angle);
-  image.alt = `${activeColor.t} Maine Coon ${angle} view`;
-  document.querySelectorAll(".angle-btn").forEach(button => button.classList.toggle("active", button.dataset.angle === angle));
-  document.getElementById("viewerNote").textContent = angle === "turntable"
-    ? "360 preview uses the available profile view as a turntable-style inspection. Add a true image sequence later for drag rotation."
-    : angle === "front" ? "Illustrative front view."
-    : "Illustrative profile view showing the silhouette, ruff, ear furnishings, and tail.0";
-}
-function openModal(key){
-  const c=COLORS.find(x=>x.k===key); if(!c) return;
-  activeColor = c;
-  activeAngle = "front";
-  const g=GENDER_TEXT[c.x];
-  document.getElementById("mImg").src=c.img;
-  document.getElementById("mImg").alt=c.t+" Maine Coon front view";
-  document.querySelectorAll(".angle-btn").forEach(button => button.classList.toggle("active", button.dataset.angle === "front"));
-  document.getElementById("viewerNote").textContent = "Illustrative front view. Use the angle controls to inspect coat shape and furnishings.";
-  document.getElementById("mTitle").innerHTML=c.t;
-  document.getElementById("mPattern").innerHTML=c.p;
-  document.getElementById("mDesc").textContent=c.d;
-  document.getElementById("mVars").innerHTML=c.v.map(v=>`<li>${v}</li>`).join("");
-  const gl=document.getElementById("mGender");
-  gl.textContent=g.full;
-  gl.className="genderline badge "+g.cls;
-  modal.classList.add("open");
-  document.body.style.overflow="hidden";
-}
-function closeModal(){modal.classList.remove("open");document.body.style.overflow="auto"}
-
-document.addEventListener("click",e=>{
-  const c=e.target.closest(".card[data-key]");
-  if(c){openModal(c.dataset.key);return}
-  if(e.target.classList.contains("close")||e.target===modal)closeModal();
-  const angleButton = e.target.closest(".angle-btn");
-  if(angleButton){ updateViewer(angleButton.dataset.angle); return; }
-  });
-document.querySelectorAll(".angle-btn").forEach(button => {
-  button.addEventListener("click", () => updateViewer(button.dataset.angle));
-});
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeModal();
-  const card = document.activeElement?.closest?.(".card[data-key]");
-  if(card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openModal(card.dataset.key); }
-});
-
-document.querySelectorAll(".filter-btn").forEach(b=>{
-  b.addEventListener("click",()=>{
-    document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    const f=b.dataset.filter;
-    document.querySelectorAll(".card[data-x]").forEach(card=>{
-      card.style.display=(f==="all"||card.dataset.x===f)?"":"none";
-    });
-  });
-});
+let activeColor=null;
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+function badge(c){return `<span class="badge ${c.sex==='female'?'female':'both'}">${c.sex==='female'?'Female-biased':'Both sexes'}</span>`}
+function render(){const root=document.getElementById('guideSections');const groups=[...new Set(COLORS.map(c=>c.group))];root.innerHTML=groups.map(group=>`<section class="guide-group"><div class="section-heading"><span class="step-label">Reference set</span><h2>${group}</h2></div><div class="cards">${COLORS.filter(c=>c.group===group).map(c=>`<article class="card color-guide-card" data-sex="${c.sex}" data-key="${c.id}" tabindex="0" role="button" aria-label="Open ${esc(c.name)} details"><img class="thumb" src="${c.image}" alt="Illustrative Maine Coon with ${esc(c.name.toLowerCase())} coat" loading="lazy"><div class="body"><h3>${c.name}</h3><p class="sub">${c.pattern}</p>${badge(c)}<p class="small">Click to compare views and learn the visual checks.</p></div></article>`).join('')}</div></section>`).join('')}
+function openColor(id){activeColor=COLORS.find(c=>c.id===id);if(!activeColor)return;document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';document.getElementById('mTitle').textContent=activeColor.name;document.getElementById('mPattern').textContent=activeColor.pattern;document.getElementById('mDesc').textContent=activeColor.desc;document.getElementById('mVars').innerHTML=activeColor.vars.map(v=>`<li>${v}</li>`).join('');document.getElementById('mGender').textContent=activeColor.genetics;document.getElementById('mGender').className=`genderline badge ${activeColor.sex==='female'?'female':'both'}`;setAngle('front')}
+function setAngle(angle){if(!activeColor)return;const image=document.getElementById('mImg');const isProfile=angle==='profile';image.src=isProfile?activeColor.profile:activeColor.image;image.alt=`${activeColor.name} illustrative ${angle} view`;document.querySelectorAll('.angle-btn').forEach(b=>b.classList.toggle('active',b.dataset.angle===angle));document.getElementById('viewerNote').textContent=angle==='turntable'?'A true 360 sequence is not available for this educational image, so rotation is intentionally disabled.':'Generated illustrative '+angle+' view. The profile view is an alternate reference, not evidence of the same individual or pedigree.'}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='auto'}
+function updateCompare(){const c=COLORS.find(x=>x.id===document.getElementById('compareColor').value)||COLORS[0];const type=TYPE_INFO[document.getElementById('compareType').value];document.getElementById('compareOutput').innerHTML=`<div class="compare-image"><img src="${c.image}" alt="Illustrative ${c.name} Maine Coon"><span class="badge muted-badge">Illustrative AI image</span></div><div><h3>${c.name} + ${type.label}</h3><p>${type.text}</p><p><b>Color check:</b> ${c.desc}</p><p><b>Sex note:</b> ${c.genetics}</p><p class="small">Ask a breeder for the registered color, parent colors, adult photos in natural light, and the pedigree rather than relying on a marketing label or one photo.</p></div>`}
+render();const colorSelect=document.getElementById('compareColor');colorSelect.innerHTML=COLORS.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');document.getElementById('compareColor').addEventListener('change',updateCompare);document.getElementById('compareType').addEventListener('change',updateCompare);updateCompare();
+document.addEventListener('click',e=>{const card=e.target.closest('.color-guide-card');if(card)openColor(card.dataset.key);if(e.target.id==='closeModal'||e.target.id==='modal')closeModal();const angle=e.target.closest('.angle-btn');if(angle&&!angle.disabled)setAngle(angle.dataset.angle)});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();const card=document.activeElement?.closest?.('.color-guide-card');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openColor(card.dataset.key)}});document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.color-guide-card').forEach(card=>card.hidden=btn.dataset.filter!=='all'&&card.dataset.sex!==btn.dataset.filter)}));
+const saved=localStorage.getItem('maine-coon-theme');if(saved)document.documentElement.dataset.theme=saved;const theme=document.getElementById('themeToggle');const updateTheme=()=>theme.textContent=document.documentElement.dataset.theme==='dark'?'Light theme':'Dark theme';theme.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';localStorage.setItem('maine-coon-theme',document.documentElement.dataset.theme);updateTheme()});updateTheme();
 </script>
 </body>
 </html>
