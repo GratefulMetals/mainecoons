@@ -65,7 +65,13 @@ p { color: var(--muted); }
 .modal { position: fixed; inset: 0; z-index: 20; display: none; place-items: center; padding: 22px; background: rgba(5, 10, 16, .82); }
 .modal.open { display: grid; }
 .modal .inner { position: relative; width: min(920px, 100%); max-height: calc(100vh - 44px); overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px; }
-.modal .inner > img { display: block; width: 100%; max-height: 78vh; object-fit: contain; border-radius: 14px; background: var(--bg); }
+.viewer-stage { display: grid; place-items: center; min-height: 280px; background: var(--bg); border-radius: 14px; overflow: hidden; }
+.viewer-stage img { display: block; width: 100%; max-height: 62vh; object-fit: contain; border-radius: 14px; background: var(--bg); }
+.angle-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.angle-btn { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; background: var(--surface-strong); color: var(--text); cursor: pointer; }
+.angle-btn.active, .angle-btn:hover { border-color: var(--brand); color: var(--brand); }
+.viewer-note { color: var(--muted); font-size: .85rem; margin: 8px 0 16px; }
+.view-hint { display: block; padding: 8px 14px 0; color: var(--muted); font-size: .78rem; }
 .modal .close { position: absolute; top: 10px; right: 10px; z-index: 1; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--text); font-size: 1.5rem; cursor: pointer; }
 .swatch { height: 66px; border-radius: 11px; border: 1px solid var(--line); display: block; }
 .color-photo { display: block; width: 100%; height: 150px; object-fit: cover; border-radius: 11px; border: 1px solid var(--line); background: var(--surface-strong); }

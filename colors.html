@@ -52,7 +52,14 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <div class="inner">
     <button class="close" aria-label="Close">×</button>
-    <img id="mImg" src="" alt="">
+    <div class="viewer-stage"><img id="mImg" src="" alt=""></div>
+    <div class="angle-controls" role="group" aria-label="Photo angles">
+      <button class="angle-btn active" data-angle="front">Front</button>
+      <button class="angle-btn" data-angle="profile">Profile</button>
+      <button class="angle-btn" data-angle="rear">Rear / coat</button>
+      <button class="angle-btn" data-angle="turntable">360 view</button>
+    </div>
+    <p class="viewer-note" id="viewerNote">Illustrative front view. Use the angle controls to inspect coat shape and furnishings.</p>
     <div class="detail">
       <h3 id="mTitle"></h3>
       <p class="sub" id="mPattern"></p>
@@ -82,6 +89,9 @@ const IMG = {
   tortie:"/maine-coon-tortie.png",
   tortie2:"/maine-coon-tortie.png",
   calico:"/maine-coon-calico.png"
+};
+const PROFILE = {
+  black:"/maine-coon-black-profile.png", blue:"/maine-coon-blue-profile.png", red:"/maine-coon-red-profile.png", cream:"/maine-coon-cream-profile.png", white:"/maine-coon-white-profile.png", brown:"/maine-coon-brown-tabby-profile.png", silver:"/maine-coon-silver-tabby-profile.png", mix:"/maine-coon-black-smoke-profile.png", tortie:"/maine-coon-tortie-profile.png", calico:"/maine-coon-calico-profile.png"
 };
 
 const COLORS = [
@@ -154,7 +164,8 @@ const GENDER_TEXT = {
 function card(c){
   const g = GENDER_TEXT[c.x];
   return `<article class="card" data-x="${c.x}" data-key="${c.k}" tabindex="0" role="button" aria-label="View full photo and details for ${c.t} Maine Coon">
-    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon thumbnail. Click to enlarge." loading="lazy">
+    <img class="thumb" src="${c.img}" alt="${c.t} Maine Coon thumbnail, front view. Click to enlarge and view angles." loading="lazy">
+    <span class="view-hint">Front · profile · coat view</span>
     <div class="body">
       <h3>${c.t}</h3>
       <p class="sub">${c.p}</p>
@@ -168,11 +179,34 @@ document.getElementById("grid-tabby").innerHTML = COLORS.filter(c=>c.g==="tabby"
 document.getElementById("grid-specialty").innerHTML = COLORS.filter(c=>c.g==="specialty").map(card).join("");
 
 const modal=document.getElementById("modal");
+let activeColor = null;
+let activeAngle = "front";
+function angleImage(c, angle){
+  if(angle === "profile") return PROFILE[c.k] || PROFILE[c.k.split('-')[0]] || c.img;
+  if(angle === "rear") return PROFILE[c.k] || PROFILE[c.k.split('-')[0]] || c.img;
+  return c.img;
+}
+function updateViewer(angle){
+  if(!activeColor) return;
+  activeAngle = angle;
+  const image = document.getElementById("mImg");
+  image.src = angleImage(activeColor, angle);
+  image.alt = `${activeColor.t} Maine Coon ${angle} view`;
+  document.querySelectorAll(".angle-btn").forEach(button => button.classList.toggle("active", button.dataset.angle === angle));
+  document.getElementById("viewerNote").textContent = angle === "turntable"
+    ? "360 preview uses the available profile view as a turntable-style inspection. Add a true image sequence later for drag rotation."
+    : angle === "front" ? "Illustrative front view."
+    : "Illustrative profile view showing the silhouette, ruff, ear furnishings, and tail.0";
+}
 function openModal(key){
   const c=COLORS.find(x=>x.k===key); if(!c) return;
+  activeColor = c;
+  activeAngle = "front";
   const g=GENDER_TEXT[c.x];
   document.getElementById("mImg").src=c.img;
-  document.getElementById("mImg").alt=c.t+" Maine Coon";
+  document.getElementById("mImg").alt=c.t+" Maine Coon front view";
+  document.querySelectorAll(".angle-btn").forEach(button => button.classList.toggle("active", button.dataset.angle === "front"));
+  document.getElementById("viewerNote").textContent = "Illustrative front view. Use the angle controls to inspect coat shape and furnishings.";
   document.getElementById("mTitle").innerHTML=c.t;
   document.getElementById("mPattern").innerHTML=c.p;
   document.getElementById("mDesc").textContent=c.d;
@@ -189,7 +223,13 @@ document.addEventListener("click",e=>{
   const c=e.target.closest(".card[data-key]");
   if(c){openModal(c.dataset.key);return}
   if(e.target.classList.contains("close")||e.target===modal)closeModal();
+  const angleButton = e.target.closest(".angle-btn");
+  if(angleButton){ updateViewer(angleButton.dataset.angle); return; }
+  });
+document.querySelectorAll(".angle-btn").forEach(button => {
+  button.addEventListener("click", () => updateViewer(button.dataset.angle));
 });
+
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape") closeModal();
   const card = document.activeElement?.closest?.(".card[data-key]");
