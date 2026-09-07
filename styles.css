@@ -89,6 +89,22 @@ p { color: var(--muted); }
 .compare-image { position: relative; }
 .compare-image img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
 .compare-image .badge { position: absolute; left: 10px; bottom: 10px; }
+.tri-compare { display: grid; gap: 14px; margin-top: 18px; }
+.reference-scene { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px 12px 12px; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background-color: color-mix(in srgb, var(--surface-strong) 86%, transparent); background-image: linear-gradient(to right, transparent 24.8%, color-mix(in srgb, var(--muted) 18%, transparent) 25%, transparent 25.2%), linear-gradient(to right, transparent 49.8%, color-mix(in srgb, var(--muted) 18%, transparent) 50%, transparent 50.2%), linear-gradient(to right, transparent 74.8%, color-mix(in srgb, var(--muted) 18%, transparent) 75%, transparent 75.2%), linear-gradient(to bottom, transparent 24.8%, color-mix(in srgb, var(--muted) 18%, transparent) 25%, transparent 25.2%), linear-gradient(to bottom, transparent 49.8%, color-mix(in srgb, var(--muted) 18%, transparent) 50%, transparent 50.2%), linear-gradient(to bottom, transparent 74.8%, color-mix(in srgb, var(--muted) 18%, transparent) 75%, transparent 75.2%); }
+.reference-scene::before { content: ''; position: absolute; inset: 0 50% 0 auto; width: 1px; background: color-mix(in srgb, var(--brand) 35%, transparent); box-shadow: -25vw 0 color-mix(in srgb, var(--brand) 18%, transparent), 25vw 0 color-mix(in srgb, var(--brand) 18%, transparent); }
+.measure-label { position: absolute; top: 5px; left: 10px; color: var(--muted); font-size: .72rem; }
+.compare-viewer { position: relative; z-index: 1; min-width: 0; padding: 8px; border: 1px solid color-mix(in srgb, var(--line) 75%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--surface) 78%, transparent); }
+.compare-viewer img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: contain; cursor: grab; touch-action: pan-y; }
+.compare-viewer img:active { cursor: grabbing; }
+.compare-viewer h4 { margin: 8px 0 3px; color: var(--brand); }
+.compare-viewer .small { margin: 0; }
+.person-reference { position: absolute; right: 10px; bottom: 7px; width: 24px; height: 74%; opacity: .2; pointer-events: none; }
+.person-reference::before { content: ''; position: absolute; top: 0; left: 7px; width: 11px; height: 11px; border-radius: 50%; background: var(--muted); box-shadow: 0 15px 0 -2px var(--muted); }
+.person-reference::after { content: ''; position: absolute; top: 13px; left: 9px; width: 8px; height: 61px; border-radius: 8px; background: var(--muted); }
+.size-table { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.size-metric { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-strong); }
+.size-metric strong { display: block; color: var(--brand); }
+@media (max-width: 760px) { .reference-scene, .size-table { grid-template-columns: 1fr; } .person-reference { display: none; } }
 .guide-group { margin: 34px 0; }
 .section-heading { margin-bottom: 12px; }
 .section-heading h2 { margin-top: 3px; }
